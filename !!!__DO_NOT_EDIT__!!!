@@ -1,0 +1,21 @@
+!!!__DO_NOT_EDIT__!!!
+
+(IF YOU INTEND TO MODIFY ANY OF THE CONTENTS OF THIS DIRECTORY, PLEASE STOP AND DO NOT MAKE ANY CHANGES)
+
+ATLIBX SUBTREE (PULL-ONLY)
+
+This `src/atlibx` folder is the result of **git subtree** of the main repo **`altaprimadev/atlibx`**.
+
+## RULES (MANDATORY)
+**PULL-ONLY (ONE-WAY).**
+- This directory **MUST NOT** be modified directly from this repo (FE/BE).
+- Synchronization is only done by **pulling the subtree** from the main `altaprimadev/atlibx` repo.
+
+## THE RIGHT FLOW
+If you need changes (bug fixes, improvements, or new features):
+1. Create a PR to the main repo: **`altaprimadev/atlibx`**
+2. After the PR is merged, sync it to this repo:
+	```bash
+	git fetch atlibx
+	git subtree pull --prefix=src/atlibx atlibx main --squash
+	```
