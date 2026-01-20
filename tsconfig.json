@@ -10,5 +10,5 @@
 		"esModuleInterop": true,
 		"moduleDetection": "force",
 	},
-	"include": ["src"],
+	"include": ["src", "index.ts"],
 }
