@@ -1,0 +1,39 @@
+{
+	"name": "atlibx",
+	"type": "module",
+	"version": "1.0.0",
+	"description": "",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"sideEffects": false,
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"default": "./dist/index.js"
+		}
+	},
+	"scripts": {
+		"build": "tsup",
+		"format": "prettier --write \"src/**/*.ts\""
+	},
+	"author": "adhemukhlis",
+	"license": "ISC",
+	"packageManager": "pnpm@10.28.0",
+	"devDependencies": {
+		"@types/node": "^25.0.9",
+		"prettier": "^3.8.0",
+		"tsup": "^8.5.1",
+		"typescript": "^5.9.3"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/altaprimadev/atlibx.git"
+	},
+	"engines": {
+		"node": ">=22"
+	}
+}
