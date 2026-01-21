@@ -25,7 +25,8 @@
 		"typecheck": "tsc -p tsconfig.json --noEmit",
 		"semver:patch": "pnpm version patch",
 		"semver:minor": "pnpm version minor",
-		"semver:major": "pnpm version major"
+		"semver:major": "pnpm version major",
+		"semver:publish": "pnpm publish --access public"
 	},
 	"devDependencies": {
 		"@types/node": "^25.0.9",
