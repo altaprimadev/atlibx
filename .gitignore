@@ -1,17 +1,9 @@
-/*
-!**/
-
-node_modules/
-dist/
-.git/
-
-!**/*.ts
-!package.json
-!pnpm-lock.yaml
-!tsconfig.json
-!README.md
-!.prettierrc
-!.gitignore
-!!!!__DO_NOT_EDIT__!!!
-
-!index.ts
+# Logs
+logs
+*.log
+npm-debug.log*
+/node_modules
+.env
+nohup.out
+.DS_Store
+*.pem
