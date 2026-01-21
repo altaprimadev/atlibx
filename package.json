@@ -6,11 +6,20 @@
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"sideEffects": false,
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"default": "./dist/index.js"
+		}
+	},
 	"files": [
 		"dist"
 	],
 	"scripts": {
-		"format": "prettier --write \"src/**/*.ts\""
+		"build": "tsup",
+		"format": "prettier --write \"src/**/*.ts\"",
+		"typecheck": "tsc --noEmit"
 	},
 	"author": "adhemukhlis",
 	"license": "ISC",
@@ -18,11 +27,19 @@
 	"devDependencies": {
 		"@types/node": "^25.0.9",
 		"prettier": "^3.8.0",
+		"tsup": "^8.5.1",
 		"typescript": "^5.9.3"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/altaprimadev/atlibx.git"
+	},
+	"bugs": {
+		"url": "https://github.com/altaprimadev/atlibx/issues"
+	},
+	"homepage": "https://github.com/altaprimadev/atlibx#readme",
+	"publishConfig": {
+		"access": "public"
 	},
 	"engines": {
 		"node": ">=22"
