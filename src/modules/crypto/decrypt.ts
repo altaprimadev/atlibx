@@ -1,5 +1,5 @@
 import { webcrypto } from 'node:crypto'
-import { CryptoResult } from './types'
+import type { CryptoResult } from './types'
 import { fromBase64, getKey, toArrayBuffer } from './utils'
 const { subtle } = webcrypto
 

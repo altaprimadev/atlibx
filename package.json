@@ -3,6 +3,9 @@
 	"type": "module",
 	"version": "1.0.0",
 	"description": "",
+	"author": "adhemukhlis",
+	"license": "ISC",
+	"packageManager": "pnpm@10.28.0",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"sideEffects": false,
@@ -19,11 +22,8 @@
 	"scripts": {
 		"build": "tsup",
 		"format": "prettier --write \"src/**/*.ts\"",
-		"typecheck": "tsc --noEmit"
+		"typecheck": "tsc -p tsconfig.json --noEmit"
 	},
-	"author": "adhemukhlis",
-	"license": "ISC",
-	"packageManager": "pnpm@10.28.0",
 	"devDependencies": {
 		"@types/node": "^25.0.9",
 		"prettier": "^3.8.0",
