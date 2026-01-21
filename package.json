@@ -17,7 +17,18 @@
 		},
 		"./crypto": {
 			"types": "./dist/crypto.d.ts",
-			"import": "./dist/crypto.js"
+			"import": "./dist/crypto.js",
+			"default": "./dist/crypto.js"
+		},
+		"./map": {
+			"types": "./dist/map.d.ts",
+			"import": "./dist/map.js",
+			"default": "./dist/map.js"
+		},
+		"./string": {
+			"types": "./dist/string.d.ts",
+			"import": "./dist/string.js",
+			"default": "./dist/string.js"
 		}
 	},
 	"files": [
