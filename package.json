@@ -46,7 +46,8 @@
 		"semver:patch": "pnpm version patch",
 		"semver:minor": "pnpm version minor",
 		"semver:major": "pnpm version major",
-		"semver:publish": "pnpm publish --access public"
+		"semver:publish": "pnpm publish --access public",
+		"postpublish": "git push origin main --follow-tags"
 	},
 	"devDependencies": {
 		"@types/node": "^25.0.9",
