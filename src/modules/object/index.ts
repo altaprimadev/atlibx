@@ -1,2 +1,3 @@
 export { default as sanitizeObject } from './sanitize-object'
-export type { SanitizeObjectOptions } from './types'
+export { default as jsonSafeParse } from './json-safe-parse'
+export type { SanitizeObjectOptions, JSONSafeParseResult } from './types'
