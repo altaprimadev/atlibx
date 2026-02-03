@@ -1,16 +1,30 @@
-import { webcrypto } from 'node:crypto'
-const { subtle } = webcrypto
+const { subtle } = globalThis.crypto
 
-export const getKey = async (secretKey: string): Promise<webcrypto.CryptoKey> => {
-	const keyData = Buffer.from(secretKey, 'utf-8')
+export const getKey = async (secretKey: string): Promise<CryptoKey> => {
+	const keyData = new TextEncoder().encode(secretKey)
 	const hash = await subtle.digest('SHA-256', keyData)
 
 	return subtle.importKey('raw', hash, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt'])
 }
 
-export const toBase64 = (bytes: Uint8Array): string => Buffer.from(bytes).toString('base64')
+export const toBase64 = (bytes: Uint8Array): string => {
+	let binary = ''
+	const len = bytes.byteLength
+	for (let i = 0; i < len; i++) {
+		binary += String.fromCharCode(bytes[i])
+	}
+	return btoa(binary)
+}
 
-export const fromBase64 = (base64: string): Uint8Array => new Uint8Array(Buffer.from(base64, 'base64'))
+export const fromBase64 = (base64: string): Uint8Array => {
+	const binaryString = atob(base64)
+	const len = binaryString.length
+	const bytes = new Uint8Array(len)
+	for (let i = 0; i < len; i++) {
+		bytes[i] = binaryString.charCodeAt(i)
+	}
+	return bytes
+}
 
 export const toArrayBuffer = (view: Uint8Array): ArrayBuffer => view.buffer.slice(view.byteOffset, view.byteOffset + view.byteLength) as ArrayBuffer
 
@@ -62,7 +76,7 @@ export const generateArray = (length: number, passkey: string): number[] => {
 }
 
 export const combineShuffleString = (str1: string, str2: string): string => {
-	const segments = str1.split(UNICODE_RANGES_REGEX).filter((c) => c !== undefined && c !== '')
+	const segments = str1.match(UNICODE_RANGES_REGEX) || []
 	const hiddenChunks = str2.match(new RegExp(`.{${CODE_LENGTH}}`, 'g')) || []
 
 	const ratio = segments.length / (segments.length + hiddenChunks.length)

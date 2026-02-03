@@ -1,6 +1,6 @@
 import type { SanitizeObjectOptions } from './types'
 
-const sanitizeObject = <T extends Record<string, any>>(obj: T, options: SanitizeObjectOptions = { noEmptyString: false }): Partial<T> => {
+const sanitizeObject = <T extends Record<string, unknown>>(obj: T, options: SanitizeObjectOptions = { noEmptyString: false }): Partial<T> => {
 	if (obj === null || typeof obj !== 'object' || obj instanceof Date || obj?.constructor?.name === 'Decimal') {
 		return obj
 	}
@@ -23,7 +23,7 @@ const sanitizeObject = <T extends Record<string, any>>(obj: T, options: Sanitize
 
 				return { ...acc, [key]: cleanArray }
 			}
-			const cleanedNested = sanitizeObject(value, options)
+			const cleanedNested = sanitizeObject(value as Record<string, unknown>, options)
 			if (Object.keys(cleanedNested).length === 0) return acc
 
 			return { ...acc, [key]: cleanedNested }
