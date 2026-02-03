@@ -1,5 +1,6 @@
 import controlCharsRegex from '../regex/control-chars'
 import multipleNewlinesRegex from '../regex/multiple-newlines'
+import multipleSpacesRegex from '../regex/multiple-spaces'
 import nonBasicLatinRegex from '../regex/non-basic-latin'
 import spacesBeforeNewlineRegex from '../regex/spaces-before-newline'
 
@@ -16,7 +17,7 @@ const sanitizeString = <T = string>(value: string | undefined | null, fallback: 
 				// Multiple newline jadi satu
 				.replace(multipleNewlinesRegex, '\n')
 				// Collapse multiple spasi/tabs menjadi satu spasi (kecuali newline)
-				.replace(multipleNewlinesRegex, ' ')
+				.replace(multipleSpacesRegex, ' ')
 				// Final trim
 				.trim()
 		: fallback

@@ -1,14 +1,13 @@
-import { webcrypto } from 'node:crypto'
 import type { CryptoResult } from './types'
 import { getKey, toBase64 } from './utils'
-const { subtle } = webcrypto
+const { subtle } = globalThis.crypto
 
 const encrypt = async (payload: string, secretKey: string): Promise<CryptoResult> => {
 	try {
 		const key = await getKey(secretKey)
 
-		const iv = webcrypto.getRandomValues(new Uint8Array(12))
-		const data = Buffer.from(payload, 'utf-8')
+		const iv = globalThis.crypto.getRandomValues(new Uint8Array(12))
+		const data = new TextEncoder().encode(payload)
 
 		const encrypted = await subtle.encrypt({ name: 'AES-GCM', iv }, key, data)
 
@@ -23,10 +22,10 @@ const encrypt = async (payload: string, secretKey: string): Promise<CryptoResult
 			message: 'Encryption successful',
 			result: toBase64(combined),
 		}
-	} catch (e: any) {
+	} catch (e: unknown) {
 		return {
 			isSuccess: false,
-			message: e?.message || 'Encryption failed',
+			message: e instanceof Error ? e.message : 'Encryption failed',
 			result: null,
 		}
 	}

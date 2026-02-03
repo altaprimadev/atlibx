@@ -1,6 +1,6 @@
-import type { Unflatten } from './types'
+import type { Unflatten, FlattenResult, FlattenResultStrict } from './types'
 
-const unflatten: Unflatten = <K extends PropertyKey>(payload: any) => {
+const unflatten: Unflatten = <K extends PropertyKey>(payload: FlattenResultStrict<K> | FlattenResult) => {
 	const header = payload?.h
 	if (!Array.isArray(header)) throw new TypeError(`unflatten: missing "h"`)
 
@@ -11,7 +11,7 @@ const unflatten: Unflatten = <K extends PropertyKey>(payload: any) => {
 
 	for (let i = 0; i < rowCount; i++) {
 		const row = payload[i] ?? []
-		const obj: Record<K, unknown> = {} as any
+		const obj = {} as Record<K, unknown>
 		for (let j = 0; j < header.length; j++) obj[header[j] as K] = row[j]
 		out[i] = obj
 	}
