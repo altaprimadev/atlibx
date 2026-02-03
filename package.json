@@ -1,7 +1,7 @@
 {
 	"name": "atlibx",
 	"type": "module",
-	"version": "1.1.3",
+	"version": "1.5.1",
 	"description": "",
 	"author": "adhemukhlis",
 	"license": "ISC",
@@ -20,15 +20,30 @@
 			"import": "./dist/array.js",
 			"default": "./dist/array.js"
 		},
+		"./common": {
+			"types": "./dist/common.d.ts",
+			"import": "./dist/common.js",
+			"default": "./dist/common.js"
+		},
 		"./crypto": {
 			"types": "./dist/crypto.d.ts",
 			"import": "./dist/crypto.js",
 			"default": "./dist/crypto.js"
 		},
+		"./ensure": {
+			"types": "./dist/ensure.d.ts",
+			"import": "./dist/ensure.js",
+			"default": "./dist/ensure.js"
+		},
 		"./map": {
 			"types": "./dist/map.d.ts",
 			"import": "./dist/map.js",
 			"default": "./dist/map.js"
+		},
+		"./object": {
+			"types": "./dist/object.d.ts",
+			"import": "./dist/object.js",
+			"default": "./dist/object.js"
 		},
 		"./string": {
 			"types": "./dist/string.d.ts",
@@ -42,6 +57,10 @@
 	"scripts": {
 		"build": "tsup",
 		"format": "prettier --write \"src/**/*.ts\"",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"test:coverage": "vitest run --coverage",
+		"lint": "eslint .",
 		"typecheck": "tsc -p tsconfig.json --noEmit",
 		"semver:patch": "pnpm version patch",
 		"semver:minor": "pnpm version minor",
@@ -49,9 +68,15 @@
 		"semver:publish": "pnpm publish --access public"
 	},
 	"devDependencies": {
+		"@eslint/js": "^9.39.2",
 		"@types/node": "^25.0.9",
+		"@vitest/coverage-v8": "^4.0.18",
+		"eslint": "^9.39.2",
+		"globals": "^17.3.0",
 		"tsup": "^8.5.1",
-		"typescript": "^5.9.3"
+		"typescript": "^5.9.3",
+		"typescript-eslint": "^8.54.0",
+		"vitest": "^4.0.18"
 	},
 	"repository": {
 		"type": "git",

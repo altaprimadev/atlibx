@@ -1,7 +1,6 @@
-import { webcrypto } from 'node:crypto'
 import type { CryptoResult } from './types'
 import { fromBase64, getKey, toArrayBuffer } from './utils'
-const { subtle } = webcrypto
+const { subtle } = globalThis.crypto
 
 const decrypt = async (encryptedString: string, secretKey: string): Promise<CryptoResult> => {
 	try {
@@ -20,12 +19,12 @@ const decrypt = async (encryptedString: string, secretKey: string): Promise<Cryp
 		return {
 			isSuccess: true,
 			message: 'Decryption successful',
-			result: Buffer.from(decrypted).toString('utf-8'),
+			result: new TextDecoder().decode(decrypted),
 		}
-	} catch (e: any) {
+	} catch (e: unknown) {
 		return {
 			isSuccess: false,
-			message: e?.message || 'Decryption failed',
+			message: e instanceof Error ? e.message : 'Decryption failed',
 			result: null,
 		}
 	}
