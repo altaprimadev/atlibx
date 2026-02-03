@@ -57,6 +57,10 @@
 	"scripts": {
 		"build": "tsup",
 		"format": "prettier --write \"src/**/*.ts\"",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"test:coverage": "vitest run --coverage",
+		"lint": "eslint .",
 		"typecheck": "tsc -p tsconfig.json --noEmit",
 		"semver:patch": "pnpm version patch",
 		"semver:minor": "pnpm version minor",
@@ -64,9 +68,15 @@
 		"semver:publish": "pnpm publish --access public"
 	},
 	"devDependencies": {
+		"@eslint/js": "^9.39.2",
 		"@types/node": "^25.0.9",
+		"@vitest/coverage-v8": "^4.0.18",
+		"eslint": "^9.39.2",
+		"globals": "^17.3.0",
 		"tsup": "^8.5.1",
-		"typescript": "^5.9.3"
+		"typescript": "^5.9.3",
+		"typescript-eslint": "^8.54.0",
+		"vitest": "^4.0.18"
 	},
 	"repository": {
 		"type": "git",
