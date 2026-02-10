@@ -68,6 +68,17 @@ describe('Crypto Utils Edge Cases', () => {
 		const shortHidden = encodeToZeroWidthCharacter('hi', 'seed')
 		const combined = combineShuffleString(longVisible, shortHidden)
 		expect(combined.length).toBeGreaterThan(0)
+
+		// Uneven: more hidden than visible (for line 97)
+		const shortVisible = 'A'
+		const longHidden = encodeToZeroWidthCharacter('This is a very long hidden message indeed', 'seed')
+		const combined2 = combineShuffleString(shortVisible, longHidden)
+		expect(combined2.length).toBeGreaterThan(0)
+
+		// Regex fallback (for lines 79-80) - though match usually won't return null with these regexes
+		// We can test empty strings
+		const combined3 = combineShuffleString('', '')
+		expect(combined3).toBe('')
 	})
 
 	it('splitZeroWidthCharacters should separate visible and hidden', () => {
@@ -77,5 +88,10 @@ describe('Crypto Utils Edge Cases', () => {
 		const result = splitZeroWidthCharacters(mixed)
 		expect(result.originalText).toBe(visible)
 		expect(result.hiddenText).toBe(hidden)
+	})
+
+	it('decodeFromZeroWidthCharacter should throw error for unknown characters', () => {
+		// Pass a character that is NOT in CHAR_SET
+		expect(() => decodeFromZeroWidthCharacter('X', 'my-seed')).toThrow(/Unknown zero-width character/)
 	})
 })

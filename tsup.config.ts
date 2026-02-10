@@ -10,6 +10,8 @@ export default defineConfig({
 		common: 'src/modules/common/index.ts',
 		ensure: 'src/modules/ensure/index.ts',
 		object: 'src/modules/object/index.ts',
+		parser: 'src/modules/parser/index.ts',
+		regex: 'src/modules/regex/index.ts',
 	},
 	format: ['esm'],
 	dts: true,
