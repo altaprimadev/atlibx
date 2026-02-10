@@ -85,6 +85,27 @@ describe('Map Module', () => {
 
 			expect(result).toBe(0) // No lastHeadingDegrees provided, defaults to 0
 		})
+
+		it('should return 0 if coordinates are exactly same and no lastHeading provided', () => {
+			const coord = { lat: -6.2, lng: 106.8 }
+			expect(
+				calculateHeading({
+					previousCoordinate: coord,
+					currentCoordinate: coord,
+				}),
+			).toBe(0)
+		})
+
+		it('should handle negative bearing normalization', () => {
+			// (0,0) -> (-0.001, -0.001) should be South-West (~225deg)
+			// atan2 will return a negative value for this direction
+			const prev = { lat: 0, lng: 0 }
+			const curr = { lat: -0.001, lng: -0.001 }
+
+			const result = calculateHeading({ previousCoordinate: prev, currentCoordinate: curr })
+			expect(result).toBeGreaterThan(180)
+			expect(result).toBeLessThan(270)
+		})
 	})
 
 	describe('Polyline', () => {

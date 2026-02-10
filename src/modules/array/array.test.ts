@@ -65,5 +65,15 @@ describe('Array Module', () => {
 			const result = unflatten(payload)
 			expect(result[0]).toEqual({ id: 1, name: undefined })
 		})
+
+		it('should handle missing row index (fallback to empty array)', () => {
+			const payload = {
+				h: ['id'],
+				// 0 is missing but rowCount will be 1 because of 'foo'
+				foo: 'bar',
+			}
+			const result = unflatten(payload as any)
+			expect(result[0]).toEqual({ id: undefined })
+		})
 	})
 })
