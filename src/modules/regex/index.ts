@@ -1,0 +1,7 @@
+export { default as controlCharsRegex } from './control-chars'
+export { default as multipleNewlinesRegex } from './multiple-newlines'
+export { default as multipleSpacesRegex } from './multiple-spaces'
+export { default as nonBasicLatinRegex } from './non-basic-latin'
+export { default as spacesBeforeNewlineRegex } from './spaces-before-newline'
+export { default as urlWithVersionRegex } from './url-with-version'
+export { default as whitespaceRegex } from './whitespace'

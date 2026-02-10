@@ -4,6 +4,13 @@ export { sleep } from './modules/common'
 export { flatten, unflatten } from './modules/array'
 export { ensureFiniteNumber } from './modules/ensure'
 export { sanitizeObject, jsonSafeParse } from './modules/object'
+export { controlCharsRegex, multipleNewlinesRegex, multipleSpacesRegex, nonBasicLatinRegex, spacesBeforeNewlineRegex, urlWithVersionRegex, whitespaceRegex } from './modules/regex'
+export { encrypt, decrypt, steganoEncode, steganoDecode, steganoEncodeToZeroWidthCharacter, steganoDecodeFromZeroWidthCharacter } from './modules/crypto'
+
 export type { Coordinate, CoordinateObject } from './modules/map'
 export type { Flatten, Unflatten, FlattenData, FlattenResult, FlattenResultStrict } from './modules/array'
 export type { SanitizeObjectOptions, JSONSafeParseResult } from './modules/object'
+export type { CryptoResult } from './modules/crypto/types'
+
+export { TeltonikaParser } from './modules/parser'
+export type { TeltonikaAvlData, TeltonikaRecord } from './modules/parser'
