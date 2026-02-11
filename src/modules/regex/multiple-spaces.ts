@@ -1,3 +1,3 @@
-const multipleSpacesRegex = new RegExp('[^\\S\\r\\n]+', 'g')
+const multipleSpacesRegex = new RegExp('[^\\S\\r\\n]+')
 
 export default multipleSpacesRegex
