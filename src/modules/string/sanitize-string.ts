@@ -9,15 +9,15 @@ const sanitizeString = <T = string>(value: string | undefined | null, fallback: 
 		? String(value)
 				.normalize('NFC')
 				// Hapus semua karakter kontrol, kecuali newline dan carriage return
-				.replace(controlCharsRegex, '')
+				.replace(new RegExp(controlCharsRegex, 'g'), '')
 				// Ganti karakter non-latin dasar (misal simbol, emoji, math) dengan kosong
-				.replace(nonBasicLatinRegex, '')
+				.replace(new RegExp(nonBasicLatinRegex, 'g'), '')
 				// Collapse tab/spasi sebelum newline
-				.replace(spacesBeforeNewlineRegex, '\n')
+				.replace(new RegExp(spacesBeforeNewlineRegex, 'g'), '\n')
 				// Multiple newline jadi satu
-				.replace(multipleNewlinesRegex, '\n')
+				.replace(new RegExp(multipleNewlinesRegex, 'g'), '\n')
 				// Collapse multiple spasi/tabs menjadi satu spasi (kecuali newline)
-				.replace(multipleSpacesRegex, ' ')
+				.replace(new RegExp(multipleSpacesRegex, 'g'), ' ')
 				// Final trim
 				.trim()
 		: fallback

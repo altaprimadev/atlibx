@@ -66,7 +66,7 @@
 	],
 	"scripts": {
 		"build": "tsup",
-		"format": "prettier --write \"src/**/*.ts\"",
+		"format": "prettier --config .prettierrc --write \"**/*.{js,jsx,mjs,cjs,ts,tsx,css,scss,less,json,yml,yaml,md}\"",
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"test:coverage": "vitest run --coverage",
