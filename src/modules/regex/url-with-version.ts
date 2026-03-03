@@ -1,3 +1,3 @@
-const urlWithVersionRegex = new RegExp('^/v\\d+(/.*)?$', 'g')
+const urlWithVersionRegex = new RegExp('^/v\\d+(/.*)?$')
 
 export default urlWithVersionRegex

@@ -1,3 +1,3 @@
-const whitespaceRegex = new RegExp('\\s+', 'g')
+const whitespaceRegex = new RegExp('\\s+')
 
 export default whitespaceRegex

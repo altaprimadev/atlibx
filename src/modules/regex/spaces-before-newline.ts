@@ -1,3 +1,3 @@
-const spacesBeforeNewlineRegex = new RegExp('[ \\t]+\\n', 'g')
+const spacesBeforeNewlineRegex = new RegExp('[ \\t]+\\n')
 
 export default spacesBeforeNewlineRegex
