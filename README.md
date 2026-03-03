@@ -184,6 +184,25 @@ import { sleep } from 'atlibx/common'
 await sleep(1000) // Delay 1 second
 ```
 
+---
+
+### 9. Validator Utilities
+
+Utilitas untuk validasi format data tipe tertentu.
+
+**Import:**
+
+```ts
+import { isValidPasswordFormat, isRecord } from 'atlibx/validator'
+```
+
+**Usage:**
+
+```ts
+isValidPasswordFormat('SecureP@ssw0rd') // true
+isRecord({ key: 'value' }) // true
+```
+
 ## Requirements
 
 - Node.js >= 22.0.0

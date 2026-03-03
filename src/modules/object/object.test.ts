@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import hasKey from './has-key'
-import isRecord from './is-record'
+import isRecord from '../validator/is-record'
 import jsonSafeParse from './json-safe-parse'
 import sanitizeObject from './sanitize-object'
 
