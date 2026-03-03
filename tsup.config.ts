@@ -12,6 +12,7 @@ export default defineConfig({
 		object: 'src/modules/object/index.ts',
 		parser: 'src/modules/parser/index.ts',
 		regex: 'src/modules/regex/index.ts',
+		validator: 'src/modules/validator/index.ts',
 	},
 	format: ['esm'],
 	dts: true,
