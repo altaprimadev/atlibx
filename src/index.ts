@@ -15,4 +15,4 @@ export type { CryptoResult } from './modules/crypto/types'
 export { TeltonikaParser } from './modules/parser'
 export type { TeltonikaAvlData, TeltonikaRecord } from './modules/parser'
 
-export { isValidPasswordFormat } from './modules/validator'
+export { isValidPasswordFormat, isRecord } from './modules/validator'
