@@ -35,6 +35,11 @@
 			"import": "./dist/ensure.js",
 			"default": "./dist/ensure.js"
 		},
+		"./function": {
+			"types": "./dist/function.d.ts",
+			"import": "./dist/function.js",
+			"default": "./dist/function.js"
+		},
 		"./map": {
 			"types": "./dist/map.d.ts",
 			"import": "./dist/map.js",

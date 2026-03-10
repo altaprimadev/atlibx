@@ -7,7 +7,7 @@
    ```
 3. generate `exports` at `script/gen-exports.ts`
    ```bash
-   pnpm ts-node script/gen-exports.ts
+   pnpm tsx script/gen-exports.ts
    ```
 4. copy `exports` print result to `package.json`
 5. up semantic version
