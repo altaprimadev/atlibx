@@ -1,5 +1,5 @@
 // scripts/gen-exports.ts
-import { readdirSync, statSync } from 'node:fs'
+import { readdirSync, statSync, readFileSync, writeFileSync } from 'node:fs'
 import { join, posix } from 'node:path'
 
 type ExportTarget = {
@@ -35,7 +35,11 @@ export function generateExports(distDir = 'dist'): { exports: ExportMap } {
 	// collect base names from .js files only (your desired output uses .js)
 	const jsBases = files.filter((f) => f.endsWith('.js')).map((f) => f.slice(0, -'.js'.length))
 
-	const bases = unique(jsBases).sort((a, b) => a.localeCompare(b))
+	const bases = unique(jsBases).sort((a, b) => {
+		if (a === 'index') return -1
+		if (b === 'index') return 1
+		return a.localeCompare(b)
+	})
 
 	const exportsMap: ExportMap = {}
 
@@ -62,9 +66,17 @@ export function generateExports(distDir = 'dist'): { exports: ExportMap } {
 	return { exports: exportsMap }
 }
 
-// If run directly: print JSON to stdout
+// If run directly: update package.json
 if (import.meta.url === new URL(`file://${process.argv[1]}`).href) {
 	const distDir = process.argv[2] ?? 'dist'
 	const out = generateExports(distDir)
-	process.stdout.write(JSON.stringify(out, null, 2) + '\n')
+
+	const pkgPath = join(process.cwd(), 'package.json')
+	const pkgContent = readFileSync(pkgPath, 'utf-8')
+	const pkg = JSON.parse(pkgContent)
+
+	pkg.exports = out.exports
+
+	writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf-8')
+	console.log('Successfully updated exports in package.json')
 }
