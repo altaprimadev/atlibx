@@ -1,19 +1,19 @@
 {
 	"name": "atlibx",
 	"type": "module",
-	"version": "1.8.2",
+	"version": "1.9.0",
 	"description": "",
 	"author": "adhemukhlis",
 	"license": "ISC",
-	"packageManager": "pnpm@10.30.3+sha512.c961d1e0a2d8e354ecaa5166b822516668b7f44cb5bd95122d590dd81922f606f5473b6d23ec4a5be05e7fcd18e8488d47d978bbe981872f1145d06e9a740017",
-	"main": "./dist/index.js",
-	"types": "./dist/index.d.ts",
+	"packageManager": "pnpm@10.32.0+sha512.9b2634bb3fed5601c33633f2d92593f506270a3963b8c51d2b2d6a828da615ce4e9deebef9614ccebbc13ac8d3c0f9c9ccceb583c69c8578436fa477dbb20d70",
+	"main": "./dist/index.mjs",
+	"types": "./dist/index.d.mts",
 	"sideEffects": false,
 	"files": [
 		"dist"
 	],
 	"scripts": {
-		"build": "tsup",
+		"build": "tsdown",
 		"format": "prettier --config .prettierrc --write \"**/*.{js,jsx,mjs,cjs,ts,tsx,css,scss,less,json,yml,yaml,md}\"",
 		"test": "vitest run",
 		"test:watch": "vitest",
@@ -31,7 +31,7 @@
 		"@vitest/coverage-v8": "^4.0.18",
 		"eslint": "^10.0.3",
 		"globals": "^17.4.0",
-		"tsup": "^8.5.1",
+		"tsdown": "^0.21.1",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.57.0",
 		"vitest": "^4.0.18"
@@ -52,64 +52,64 @@
 	},
 	"exports": {
 		".": {
-			"types": "./dist/index.d.ts",
-			"import": "./dist/index.js",
-			"default": "./dist/index.js"
+			"types": "./dist/index.d.mts",
+			"import": "./dist/index.mjs",
+			"default": "./dist/index.mjs"
 		},
 		"./array": {
-			"types": "./dist/array.d.ts",
-			"import": "./dist/array.js",
-			"default": "./dist/array.js"
+			"types": "./dist/array.d.mts",
+			"import": "./dist/array.mjs",
+			"default": "./dist/array.mjs"
 		},
 		"./common": {
-			"types": "./dist/common.d.ts",
-			"import": "./dist/common.js",
-			"default": "./dist/common.js"
+			"types": "./dist/common.d.mts",
+			"import": "./dist/common.mjs",
+			"default": "./dist/common.mjs"
 		},
 		"./crypto": {
-			"types": "./dist/crypto.d.ts",
-			"import": "./dist/crypto.js",
-			"default": "./dist/crypto.js"
+			"types": "./dist/crypto.d.mts",
+			"import": "./dist/crypto.mjs",
+			"default": "./dist/crypto.mjs"
 		},
 		"./ensure": {
-			"types": "./dist/ensure.d.ts",
-			"import": "./dist/ensure.js",
-			"default": "./dist/ensure.js"
+			"types": "./dist/ensure.d.mts",
+			"import": "./dist/ensure.mjs",
+			"default": "./dist/ensure.mjs"
 		},
 		"./function": {
-			"types": "./dist/function.d.ts",
-			"import": "./dist/function.js",
-			"default": "./dist/function.js"
+			"types": "./dist/function.d.mts",
+			"import": "./dist/function.mjs",
+			"default": "./dist/function.mjs"
 		},
 		"./map": {
-			"types": "./dist/map.d.ts",
-			"import": "./dist/map.js",
-			"default": "./dist/map.js"
+			"types": "./dist/map.d.mts",
+			"import": "./dist/map.mjs",
+			"default": "./dist/map.mjs"
 		},
 		"./object": {
-			"types": "./dist/object.d.ts",
-			"import": "./dist/object.js",
-			"default": "./dist/object.js"
+			"types": "./dist/object.d.mts",
+			"import": "./dist/object.mjs",
+			"default": "./dist/object.mjs"
 		},
 		"./parser": {
-			"types": "./dist/parser.d.ts",
-			"import": "./dist/parser.js",
-			"default": "./dist/parser.js"
+			"types": "./dist/parser.d.mts",
+			"import": "./dist/parser.mjs",
+			"default": "./dist/parser.mjs"
 		},
 		"./regex": {
-			"types": "./dist/regex.d.ts",
-			"import": "./dist/regex.js",
-			"default": "./dist/regex.js"
+			"types": "./dist/regex.d.mts",
+			"import": "./dist/regex.mjs",
+			"default": "./dist/regex.mjs"
 		},
 		"./string": {
-			"types": "./dist/string.d.ts",
-			"import": "./dist/string.js",
-			"default": "./dist/string.js"
+			"types": "./dist/string.d.mts",
+			"import": "./dist/string.mjs",
+			"default": "./dist/string.mjs"
 		},
 		"./validator": {
-			"types": "./dist/validator.d.ts",
-			"import": "./dist/validator.js",
-			"default": "./dist/validator.js"
+			"types": "./dist/validator.d.mts",
+			"import": "./dist/validator.mjs",
+			"default": "./dist/validator.mjs"
 		}
 	}
 }
