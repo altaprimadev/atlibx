@@ -1,6 +1,6 @@
 # atlibx
 
-![License](https://img.shields.io/npm/l/atlibx) ![Node Version](https://img.shields.io/node/v/atlibx) ![Coverage](https://img.shields.io/badge/coverage-99.7%25-brightgreen)
+![License](https://img.shields.io/npm/l/atlibx) ![Node Version](https://img.shields.io/node/v/atlibx) ![Coverage](https://img.shields.io/badge/coverage-96.8%25-brightgreen)
 
 **atlibx** adalah koleksi utilitas internal tanpa dependensi eksternal (zero-dependency) yang dirancang untuk performa dan penggunaan lintas service (backend & frontend).
 
@@ -199,8 +199,47 @@ import { isValidPasswordFormat, isRecord } from 'atlibx/validator'
 **Usage:**
 
 ```ts
-isValidPasswordFormat('SecureP@ssw0rd') // true
 isRecord({ key: 'value' }) // true
+```
+
+---
+
+### 10. Function Utilities
+
+Utilitas terkait eksekusi fungsi (_function execution_).
+
+**Import:**
+
+```ts
+import { throttle, debounce } from 'atlibx/function'
+```
+
+**Usage:**
+
+```ts
+// 1. Throttle: Membatasi eksekusi fungsi maksimal sekali per milidetik tertentu.
+const logThrottle = throttle((message: string) => {
+	console.log(message)
+}, 1000)
+
+logThrottle('Hello') // Tereksekusi langsung
+logThrottle('World') // Diabaikan
+// 1 detik kemudian, logThrottle('World') atau argumen terakhir akan tereksekusi jika opsi trailing true (default)
+
+logThrottle.cancel() // Membatalkan throttle
+logThrottle.flush() // Mengeksekusi segera panggilan yang tertunda
+
+// 2. Debounce: Menunda eksekusi fungsi sampai periode tenang (tanpa pemanggilan) berlalu.
+const logDebounce = debounce((message: string) => {
+	console.log(message)
+}, 500)
+
+logDebounce('Type 1') // Tertunda
+logDebounce('Type 2') // Tertunda, me-reset timer
+// 500 milidetik setelah pemanggilan terakhir, logDebounce('Type 2') tereksekusi
+
+logDebounce.cancel() // Membatalkan debounce
+logDebounce.flush() // Mengeksekusi segera panggilan yang tertunda
 ```
 
 ## Requirements
