@@ -13,6 +13,7 @@ export default defineConfig({
 		parser: 'src/modules/parser/index.ts',
 		regex: 'src/modules/regex/index.ts',
 		validator: 'src/modules/validator/index.ts',
+		function: 'src/modules/function/index.ts',
 	},
 	format: ['esm'],
 	dts: true,

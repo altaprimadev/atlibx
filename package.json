@@ -1,7 +1,7 @@
 {
 	"name": "atlibx",
 	"type": "module",
-	"version": "1.7.2",
+	"version": "1.8.0",
 	"description": "",
 	"author": "adhemukhlis",
 	"license": "ISC",
@@ -34,6 +34,11 @@
 			"types": "./dist/ensure.d.ts",
 			"import": "./dist/ensure.js",
 			"default": "./dist/ensure.js"
+		},
+		"./function": {
+			"types": "./dist/function.d.ts",
+			"import": "./dist/function.js",
+			"default": "./dist/function.js"
 		},
 		"./map": {
 			"types": "./dist/map.d.ts",
