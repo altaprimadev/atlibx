@@ -1,6 +1,6 @@
 # Publish
 
-1. entry new modules (if any) at `tsup.config.ts`
+1. entry new modules (if any) at `tsdown.config.ts`
 2. dependencies upgrade
    ```bash
    pnpm up --latest

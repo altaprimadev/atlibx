@@ -26,14 +26,14 @@ function unique<T>(arr: T[]): T[] {
  * Generate package.json "exports" map based on dist directory content.
  * - index -> "."
  * - other entries -> "./<name>"
- * - requires dist/<name>.js and dist/<name>.d.ts to exist (otherwise skipped)
+ * - requires dist/<name>.mjs and dist/<name>.d.mts to exist (otherwise skipped)
  */
 export function generateExports(distDir = 'dist'): { exports: ExportMap } {
 	const absDist = join(process.cwd(), distDir)
 	const files = readdirSync(absDist)
 
-	// collect base names from .js files only (your desired output uses .js)
-	const jsBases = files.filter((f) => f.endsWith('.js')).map((f) => f.slice(0, -'.js'.length))
+	// collect base names from .mjs files only (your desired output uses .mjs)
+	const jsBases = files.filter((f) => f.endsWith('.mjs')).map((f) => f.slice(0, -'.mjs'.length))
 
 	const bases = unique(jsBases).sort((a, b) => {
 		if (a === 'index') return -1
@@ -44,8 +44,8 @@ export function generateExports(distDir = 'dist'): { exports: ExportMap } {
 	const exportsMap: ExportMap = {}
 
 	for (const base of bases) {
-		const jsPath = join(absDist, `${base}.js`)
-		const dtsPath = join(absDist, `${base}.d.ts`)
+		const jsPath = join(absDist, `${base}.mjs`)
+		const dtsPath = join(absDist, `${base}.d.mts`)
 
 		if (!isFile(jsPath)) continue
 		if (!isFile(dtsPath)) continue
@@ -53,8 +53,8 @@ export function generateExports(distDir = 'dist'): { exports: ExportMap } {
 		const key = base === 'index' ? '.' : `./${base}`
 
 		// Use POSIX paths for package.json (always forward slashes)
-		const jsRel = posix.join('.', distDir, `${base}.js`)
-		const dtsRel = posix.join('.', distDir, `${base}.d.ts`)
+		const jsRel = posix.join('.', distDir, `${base}.mjs`)
+		const dtsRel = posix.join('.', distDir, `${base}.d.mts`)
 
 		exportsMap[key] = {
 			types: `./${dtsRel}`,
