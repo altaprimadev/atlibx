@@ -31,5 +31,5 @@
    ```
 9. git push
    ```bash
-   git push origin development
+   git push origin development && git checkout main
    ```
