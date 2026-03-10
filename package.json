@@ -9,6 +9,47 @@
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"sideEffects": false,
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsup",
+		"format": "prettier --config .prettierrc --write \"**/*.{js,jsx,mjs,cjs,ts,tsx,css,scss,less,json,yml,yaml,md}\"",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"test:coverage": "vitest run --coverage",
+		"lint": "eslint .",
+		"typecheck": "tsc -p tsconfig.json --noEmit",
+		"semver:patch": "pnpm version patch",
+		"semver:minor": "pnpm version minor",
+		"semver:major": "pnpm version major",
+		"semver:publish": "pnpm publish --access public"
+	},
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"@types/node": "^25.4.0",
+		"@vitest/coverage-v8": "^4.0.18",
+		"eslint": "^10.0.3",
+		"globals": "^17.4.0",
+		"tsup": "^8.5.1",
+		"typescript": "^5.9.3",
+		"typescript-eslint": "^8.57.0",
+		"vitest": "^4.0.18"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/altaprimadev/atlibx.git"
+	},
+	"bugs": {
+		"url": "https://github.com/altaprimadev/atlibx/issues"
+	},
+	"homepage": "https://github.com/altaprimadev/atlibx#readme",
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=22"
+	},
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
@@ -70,46 +111,5 @@
 			"import": "./dist/validator.js",
 			"default": "./dist/validator.js"
 		}
-	},
-	"files": [
-		"dist"
-	],
-	"scripts": {
-		"build": "tsup",
-		"format": "prettier --config .prettierrc --write \"**/*.{js,jsx,mjs,cjs,ts,tsx,css,scss,less,json,yml,yaml,md}\"",
-		"test": "vitest run",
-		"test:watch": "vitest",
-		"test:coverage": "vitest run --coverage",
-		"lint": "eslint .",
-		"typecheck": "tsc -p tsconfig.json --noEmit",
-		"semver:patch": "pnpm version patch",
-		"semver:minor": "pnpm version minor",
-		"semver:major": "pnpm version major",
-		"semver:publish": "pnpm publish --access public"
-	},
-	"devDependencies": {
-		"@eslint/js": "^10.0.1",
-		"@types/node": "^25.4.0",
-		"@vitest/coverage-v8": "^4.0.18",
-		"eslint": "^10.0.3",
-		"globals": "^17.4.0",
-		"tsup": "^8.5.1",
-		"typescript": "^5.9.3",
-		"typescript-eslint": "^8.57.0",
-		"vitest": "^4.0.18"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/altaprimadev/atlibx.git"
-	},
-	"bugs": {
-		"url": "https://github.com/altaprimadev/atlibx/issues"
-	},
-	"homepage": "https://github.com/altaprimadev/atlibx#readme",
-	"publishConfig": {
-		"access": "public"
-	},
-	"engines": {
-		"node": ">=22"
 	}
 }
