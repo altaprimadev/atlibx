@@ -4,8 +4,8 @@ const decodePolyline = (encoded: string): Coordinate[] => {
 	const points: Coordinate[] = []
 	let index = 0
 	const len = encoded.length
-	let lat = 0,
-		lng = 0
+	let latitude = 0,
+		longitude = 0
 
 	while (index < len) {
 		let b,
@@ -16,7 +16,7 @@ const decodePolyline = (encoded: string): Coordinate[] => {
 			result |= (b & 0x1f) << shift
 			shift += 5
 		} while (b >= 0x20)
-		lat += result & 1 ? ~(result >> 1) : result >> 1
+		latitude += result & 1 ? ~(result >> 1) : result >> 1
 
 		shift = 0
 		result = 0
@@ -25,9 +25,9 @@ const decodePolyline = (encoded: string): Coordinate[] => {
 			result |= (b & 0x1f) << shift
 			shift += 5
 		} while (b >= 0x20)
-		lng += result & 1 ? ~(result >> 1) : result >> 1
+		longitude += result & 1 ? ~(result >> 1) : result >> 1
 
-		points.push([lat / 1e5, lng / 1e5])
+		points.push([latitude / 1e5, longitude / 1e5])
 	}
 
 	return points
