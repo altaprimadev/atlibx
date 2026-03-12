@@ -1,8 +1,8 @@
 import type { Coordinate } from './types'
 
 const encodePolyline = (coordinates: Coordinate[]): string => {
-	let lastLat = 0,
-		lastLng = 0,
+	let lastLatitude = 0,
+		lastLongitude = 0,
 		result = ''
 
 	const encodePart = (parts: number) => {
@@ -15,13 +15,13 @@ const encodePolyline = (coordinates: Coordinate[]): string => {
 		result += String.fromCharCode(unit + 63)
 	}
 
-	for (const [latVal, lngVal] of coordinates) {
-		const lat = Math.round(latVal * 1e5)
-		const lng = Math.round(lngVal * 1e5)
-		encodePart(lat - lastLat)
-		encodePart(lng - lastLng)
-		lastLat = lat
-		lastLng = lng
+	for (const [latitudeVal, longitudeVal] of coordinates) {
+		const latitude = Math.round(latitudeVal * 1e5)
+		const longitude = Math.round(longitudeVal * 1e5)
+		encodePart(latitude - lastLatitude)
+		encodePart(longitude - lastLongitude)
+		lastLatitude = latitude
+		lastLongitude = longitude
 	}
 
 	return result

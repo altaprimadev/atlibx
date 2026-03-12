@@ -34,14 +34,14 @@ const calculateHeading: CalculateHeadingType = (params) => {
 		return 0
 	}
 
-	if (prev.lat === curr.lat && prev.lng === curr.lng) {
+	if (prev.latitude === curr.latitude && prev.longitude === curr.longitude) {
 		return params.lastHeadingDegrees ?? 0
 	}
 
-	const lat1 = prev.lat * DEG_TO_RAD
-	const lat2 = curr.lat * DEG_TO_RAD
-	const dLat = (curr.lat - prev.lat) * DEG_TO_RAD
-	const dLng = (curr.lng - prev.lng) * DEG_TO_RAD
+	const lat1 = prev.latitude * DEG_TO_RAD
+	const lat2 = curr.latitude * DEG_TO_RAD
+	const dLat = (curr.latitude - prev.latitude) * DEG_TO_RAD
+	const dLng = (curr.longitude - prev.longitude) * DEG_TO_RAD
 	const minDist = params.minDistanceMeters ?? MIN_DISTANCE_M
 
 	// Haversine (short distance)
