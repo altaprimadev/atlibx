@@ -92,14 +92,14 @@ import { calculateHeading, encodePolyline, decodePolyline, interpolateHeading } 
 ```ts
 // 1. Calculate Heading (Bearing)
 const heading = calculateHeading({
-	previousCoordinate: { lat: -6.2, lng: 106.81 },
-	currentCoordinate: { lat: -6.19, lng: 106.82 },
+	previousCoordinate: { latitude: -6.2, longitude: 106.81 },
+	currentCoordinate: { latitude: -6.19, longitude: 106.82 },
 })
 
 // 2. Polyline Encoding (Google Polyline Algorithm)
 const encoded = encodePolyline([
-	[lat1, lng1],
-	[lat2, lng2],
+	[latitude1, longitude1],
+	[latitude2, longitude2],
 ])
 ```
 
