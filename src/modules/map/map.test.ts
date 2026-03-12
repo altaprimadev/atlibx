@@ -38,26 +38,26 @@ describe('Map Module', () => {
 
 	describe('calculateHeading', () => {
 		it('should calculate heading North', () => {
-			// (0,0) -> (1,0) [lat increased] => North
-			const prev = { lat: 0, lng: 0 }
-			const curr = { lat: 0.001, lng: 0 }
+			// (0,0) -> (1,0) [latitude increased] => North
+			const prev = { latitude: 0, longitude: 0 }
+			const curr = { latitude: 0.001, longitude: 0 }
 
 			// Should be 0
 			expect(calculateHeading({ previousCoordinate: prev, currentCoordinate: curr })).toBeCloseTo(0)
 		})
 
 		it('should calculate heading East', () => {
-			// (0,0) -> (0,1) [lng increased] => East
-			const prev = { lat: 0, lng: 0 }
-			const curr = { lat: 0, lng: 0.001 }
+			// (0,0) -> (0,1) [longitude increased] => East
+			const prev = { latitude: 0, longitude: 0 }
+			const curr = { latitude: 0, longitude: 0.001 }
 
 			// Should be 90
 			expect(calculateHeading({ previousCoordinate: prev, currentCoordinate: curr })).toBeCloseTo(90)
 		})
 
 		it('should return lastHeading if distance is too small (deadzone)', () => {
-			const prev = { lat: 0, lng: 0 }
-			const curr = { lat: 0, lng: 0 } // 0 distance
+			const prev = { latitude: 0, longitude: 0 }
+			const curr = { latitude: 0, longitude: 0 } // 0 distance
 
 			const result = calculateHeading({
 				previousCoordinate: prev,
@@ -75,8 +75,8 @@ describe('Map Module', () => {
 
 		it('should return 0 if within deadzone and no lastHeading provided', () => {
 			// Very small movement < default 3m
-			const prev = { lat: 0, lng: 0 }
-			const curr = { lat: 0.000001, lng: 0 } // ~0.1m, within default 3m deadzone
+			const prev = { latitude: 0, longitude: 0 }
+			const curr = { latitude: 0.000001, longitude: 0 } // ~0.1m, within default 3m deadzone
 
 			const result = calculateHeading({
 				previousCoordinate: prev,
@@ -87,7 +87,7 @@ describe('Map Module', () => {
 		})
 
 		it('should return 0 if coordinates are exactly same and no lastHeading provided', () => {
-			const coord = { lat: -6.2, lng: 106.8 }
+			const coord = { latitude: -6.2, longitude: 106.8 }
 			expect(
 				calculateHeading({
 					previousCoordinate: coord,
@@ -99,8 +99,8 @@ describe('Map Module', () => {
 		it('should handle negative bearing normalization', () => {
 			// (0,0) -> (-0.001, -0.001) should be South-West (~225deg)
 			// atan2 will return a negative value for this direction
-			const prev = { lat: 0, lng: 0 }
-			const curr = { lat: -0.001, lng: -0.001 }
+			const prev = { latitude: 0, longitude: 0 }
+			const curr = { latitude: -0.001, longitude: -0.001 }
 
 			const result = calculateHeading({ previousCoordinate: prev, currentCoordinate: curr })
 			expect(result).toBeGreaterThan(180)
