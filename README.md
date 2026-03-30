@@ -206,12 +206,12 @@ isRecord({ key: 'value' }) // true
 
 ### 10. Function Utilities
 
-Utilitas terkait eksekusi fungsi (_function execution_).
+Utilitas terkait eksekusi fungsi (_function execution_) dan deteksi anomali berbasis statistik.
 
 **Import:**
 
 ```ts
-import { throttle, debounce } from 'atlibx/function'
+import { throttle, debounce, detectAnomalies, detectAnomaliesFast } from 'atlibx/function'
 ```
 
 **Usage:**
@@ -240,6 +240,24 @@ logDebounce('Type 2') // Tertunda, me-reset timer
 
 logDebounce.cancel() // Membatalkan debounce
 logDebounce.flush() // Mengeksekusi segera panggilan yang tertunda
+
+// 3. detectAnomalies: Deteksi anomali lengkap dengan z-score, deviation, dan summary statistik.
+const data = [
+	{ key: 'sensor-1', value: 10 },
+	{ key: 'sensor-2', value: 12 },
+	{ key: 'sensor-3', value: 11 },
+	{ key: 'sensor-4', value: 500 }, // outlier
+]
+const result = detectAnomalies(data, 2) // threshold default = 2 (2σ)
+// result.mean, result.stdDev, result.upperBound, result.lowerBound
+// result.anomalies  → AnomalyResult[] (key, value, isAnomaly, zScore, deviation)
+// result.normals    → AnomalyResult[]
+// result.totalAnomalies, result.totalNormal
+
+// 4. detectAnomaliesFast: Versi ringan, hanya mengembalikan daftar anomali tanpa z-score/deviation.
+const fast = detectAnomaliesFast(data, 2)
+// fast.mean, fast.stdDev
+// fast.anomalies → KeyValueData[] (key, value)
 ```
 
 ## Requirements

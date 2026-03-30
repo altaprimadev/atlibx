@@ -1,115 +1,115 @@
 {
-	"name": "atlibx",
-	"type": "module",
-	"version": "1.9.1",
-	"description": "",
-	"author": "adhemukhlis",
-	"license": "ISC",
-	"packageManager": "pnpm@10.32.0+sha512.9b2634bb3fed5601c33633f2d92593f506270a3963b8c51d2b2d6a828da615ce4e9deebef9614ccebbc13ac8d3c0f9c9ccceb583c69c8578436fa477dbb20d70",
-	"main": "./dist/index.mjs",
-	"types": "./dist/index.d.mts",
-	"sideEffects": false,
-	"files": [
-		"dist"
-	],
-	"scripts": {
-		"build": "tsdown",
-		"format": "prettier --config .prettierrc --write \"**/*.{js,jsx,mjs,cjs,ts,tsx,css,scss,less,json,yml,yaml,md}\"",
-		"test": "vitest run",
-		"test:watch": "vitest",
-		"test:coverage": "vitest run --coverage",
-		"lint": "eslint .",
-		"typecheck": "tsc -p tsconfig.json --noEmit",
-		"semver:patch": "pnpm version patch",
-		"semver:minor": "pnpm version minor",
-		"semver:major": "pnpm version major",
-		"semver:publish": "pnpm publish --access public"
-	},
-	"devDependencies": {
-		"@eslint/js": "^10.0.1",
-		"@types/node": "^25.4.0",
-		"@vitest/coverage-v8": "^4.0.18",
-		"eslint": "^10.0.3",
-		"globals": "^17.4.0",
-		"tsdown": "^0.21.2",
-		"typescript": "^5.9.3",
-		"typescript-eslint": "^8.57.0",
-		"vitest": "^4.0.18"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/altaprimadev/atlibx.git"
-	},
-	"bugs": {
-		"url": "https://github.com/altaprimadev/atlibx/issues"
-	},
-	"homepage": "https://github.com/altaprimadev/atlibx#readme",
-	"publishConfig": {
-		"access": "public"
-	},
-	"engines": {
-		"node": ">=22"
-	},
-	"exports": {
-		".": {
-			"types": "./dist/index.d.mts",
-			"import": "./dist/index.mjs",
-			"default": "./dist/index.mjs"
-		},
-		"./array": {
-			"types": "./dist/array.d.mts",
-			"import": "./dist/array.mjs",
-			"default": "./dist/array.mjs"
-		},
-		"./common": {
-			"types": "./dist/common.d.mts",
-			"import": "./dist/common.mjs",
-			"default": "./dist/common.mjs"
-		},
-		"./crypto": {
-			"types": "./dist/crypto.d.mts",
-			"import": "./dist/crypto.mjs",
-			"default": "./dist/crypto.mjs"
-		},
-		"./ensure": {
-			"types": "./dist/ensure.d.mts",
-			"import": "./dist/ensure.mjs",
-			"default": "./dist/ensure.mjs"
-		},
-		"./function": {
-			"types": "./dist/function.d.mts",
-			"import": "./dist/function.mjs",
-			"default": "./dist/function.mjs"
-		},
-		"./map": {
-			"types": "./dist/map.d.mts",
-			"import": "./dist/map.mjs",
-			"default": "./dist/map.mjs"
-		},
-		"./object": {
-			"types": "./dist/object.d.mts",
-			"import": "./dist/object.mjs",
-			"default": "./dist/object.mjs"
-		},
-		"./parser": {
-			"types": "./dist/parser.d.mts",
-			"import": "./dist/parser.mjs",
-			"default": "./dist/parser.mjs"
-		},
-		"./regex": {
-			"types": "./dist/regex.d.mts",
-			"import": "./dist/regex.mjs",
-			"default": "./dist/regex.mjs"
-		},
-		"./string": {
-			"types": "./dist/string.d.mts",
-			"import": "./dist/string.mjs",
-			"default": "./dist/string.mjs"
-		},
-		"./validator": {
-			"types": "./dist/validator.d.mts",
-			"import": "./dist/validator.mjs",
-			"default": "./dist/validator.mjs"
-		}
-	}
+  "name": "atlibx",
+  "type": "module",
+  "version": "1.10.0",
+  "description": "",
+  "author": "adhemukhlis",
+  "license": "ISC",
+  "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "format": "prettier --config .prettierrc --write \"**/*.{js,jsx,mjs,cjs,ts,tsx,css,scss,less,json,yml,yaml,md}\"",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "semver:patch": "pnpm version patch",
+    "semver:minor": "pnpm version minor",
+    "semver:major": "pnpm version major",
+    "semver:publish": "pnpm publish --access public"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^25.5.0",
+    "@vitest/coverage-v8": "^4.1.2",
+    "eslint": "^10.1.0",
+    "globals": "^17.4.0",
+    "tsdown": "^0.21.7",
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.57.2",
+    "vitest": "^4.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/altaprimadev/atlibx.git"
+  },
+  "bugs": {
+    "url": "https://github.com/altaprimadev/atlibx/issues"
+  },
+  "homepage": "https://github.com/altaprimadev/atlibx#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
+    },
+    "./array": {
+      "types": "./dist/array.d.mts",
+      "import": "./dist/array.mjs",
+      "default": "./dist/array.mjs"
+    },
+    "./common": {
+      "types": "./dist/common.d.mts",
+      "import": "./dist/common.mjs",
+      "default": "./dist/common.mjs"
+    },
+    "./crypto": {
+      "types": "./dist/crypto.d.mts",
+      "import": "./dist/crypto.mjs",
+      "default": "./dist/crypto.mjs"
+    },
+    "./ensure": {
+      "types": "./dist/ensure.d.mts",
+      "import": "./dist/ensure.mjs",
+      "default": "./dist/ensure.mjs"
+    },
+    "./function": {
+      "types": "./dist/function.d.mts",
+      "import": "./dist/function.mjs",
+      "default": "./dist/function.mjs"
+    },
+    "./map": {
+      "types": "./dist/map.d.mts",
+      "import": "./dist/map.mjs",
+      "default": "./dist/map.mjs"
+    },
+    "./object": {
+      "types": "./dist/object.d.mts",
+      "import": "./dist/object.mjs",
+      "default": "./dist/object.mjs"
+    },
+    "./parser": {
+      "types": "./dist/parser.d.mts",
+      "import": "./dist/parser.mjs",
+      "default": "./dist/parser.mjs"
+    },
+    "./regex": {
+      "types": "./dist/regex.d.mts",
+      "import": "./dist/regex.mjs",
+      "default": "./dist/regex.mjs"
+    },
+    "./string": {
+      "types": "./dist/string.d.mts",
+      "import": "./dist/string.mjs",
+      "default": "./dist/string.mjs"
+    },
+    "./validator": {
+      "types": "./dist/validator.d.mts",
+      "import": "./dist/validator.mjs",
+      "default": "./dist/validator.mjs"
+    }
+  }
 }

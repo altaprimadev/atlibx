@@ -20,3 +20,30 @@ export type DebouncedFunction<Args extends unknown[], R> = {
 	cancel(): void
 	flush(): R | undefined
 }
+
+export type KeyValueData = {
+	key: string
+	value: number
+}
+
+export type AnomalyResult = {
+	key: string
+	value: number
+	isAnomaly: boolean
+	zScore: number
+	deviation: number
+}
+
+export type DetectionSummary = {
+	mean: number
+	stdDev: number
+	threshold: number
+	upperBound: number
+	lowerBound: number
+	totalData: number
+	totalAnomalies: number
+	totalNormal: number
+	results: AnomalyResult[]
+	anomalies: AnomalyResult[]
+	normals: AnomalyResult[]
+}
