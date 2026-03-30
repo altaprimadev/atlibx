@@ -34,5 +34,5 @@ export type { TeltonikaAvlData, TeltonikaRecord } from './modules/parser'
 export { isValidPasswordFormat, isRecord } from './modules/validator'
 
 // function
-export { throttle, debounce } from './modules/function'
-export type { ThrottleOptions, ThrottledFunction, DebounceOptions, DebouncedFunction } from './modules/function/types'
+export { throttle, debounce, detectAnomalies, detectAnomaliesFast } from './modules/function'
+export type { ThrottleOptions, ThrottledFunction, DebounceOptions, DebouncedFunction, KeyValueData, AnomalyResult, DetectionSummary } from './modules/function/types'
