@@ -161,6 +161,8 @@ describe('detectAnomalies', () => {
 			totalData: 0,
 			totalAnomalies: 0,
 			totalNormal: 0,
+			min: 0,
+			max: 0,
 			results: [],
 			anomalies: [],
 			normals: [],
@@ -316,7 +318,7 @@ describe('detectAnomaliesFast', () => {
 	it('should return empty results for empty data', () => {
 		const result = detectAnomaliesFast([])
 
-		expect(result).toEqual({ anomalies: [], mean: 0, stdDev: 0 })
+		expect(result).toEqual({ anomalies: [], mean: 0, stdDev: 0, min: 0, max: 0 })
 	})
 
 	it('should handle single element (no anomaly)', () => {
@@ -438,7 +440,7 @@ describe('detectAnomaliesFast', () => {
 // ── Cross-function consistency ──────────────────────────────────────────
 
 describe('detectAnomalies vs detectAnomaliesFast consistency', () => {
-	it('should agree on mean and stdDev', () => {
+	it('should agree on mean, stdDev, and boundaries', () => {
 		const data: KeyValueData[] = [
 			{ key: 'a', value: 3 },
 			{ key: 'b', value: 7 },
@@ -452,6 +454,12 @@ describe('detectAnomalies vs detectAnomaliesFast consistency', () => {
 
 		expect(full.mean).toBeCloseTo(fast.mean, 10)
 		expect(full.stdDev).toBeCloseTo(fast.stdDev, 10)
+		expect(full.min).toBe(fast.min)
+		expect(full.max).toBe(fast.max)
+		expect(full.minNormal).toBe(fast.minNormal)
+		expect(full.maxNormal).toBe(fast.maxNormal)
+		expect(full.minAnomaly).toBe(fast.minAnomaly)
+		expect(full.maxAnomaly).toBe(fast.maxAnomaly)
 	})
 
 	it('should identify the same anomaly keys', () => {
