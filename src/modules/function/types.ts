@@ -43,6 +43,12 @@ export type DetectionSummary = {
 	totalData: number
 	totalAnomalies: number
 	totalNormal: number
+	min?: number
+	max?: number
+	minNormal?: number
+	maxNormal?: number
+	minAnomaly?: number
+	maxAnomaly?: number
 	results: AnomalyResult[]
 	anomalies: AnomalyResult[]
 	normals: AnomalyResult[]
