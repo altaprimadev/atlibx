@@ -5,8 +5,8 @@ export { sleep } from './modules/common'
 export { sanitizeString, kebabLower, snakeLower } from './modules/string'
 
 // map
-export { decodePolyline, encodePolyline, calculateHeading, linearInterpolation, interpolateHeading } from './modules/map'
-export type { Coordinate, CoordinateObject } from './modules/map'
+export { decodePolyline, encodePolyline, calculateHeading, linearInterpolation, interpolateHeading, getDistance } from './modules/map'
+export type { Coordinate, CoordinateObject, DistanceUnit } from './modules/map'
 
 // array
 export { flatten, unflatten } from './modules/array'

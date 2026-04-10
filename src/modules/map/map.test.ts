@@ -4,6 +4,7 @@ import interpolateHeading from './interpolate-heading'
 import calculateHeading from './calculate-heading'
 import encodePolyline from './encode-polyline'
 import decodePolyline from './decode-polyline'
+import getDistance from './get-distance'
 import type { Coordinate, CoordinateObject } from './types'
 
 describe('Map Module', () => {
@@ -147,6 +148,59 @@ describe('Map Module', () => {
 				expect(decoded[i][0]).toBeCloseTo(points[i][0])
 				expect(decoded[i][1]).toBeCloseTo(points[i][1])
 			}
+		})
+	})
+
+	describe('getDistance', () => {
+		it('should calculate distance correctly in meters (default)', () => {
+			const start = { latitude: 0, longitude: 0 }
+			const end = { latitude: 0, longitude: 1 }
+			const distance = getDistance(start, end)
+			// 1 degree longitude at equator is approximately 111,319 meters
+			expect(distance).toBeGreaterThan(111000)
+			expect(distance).toBeLessThan(112000)
+		})
+
+		it('should return 0 for identical coordinates', () => {
+			const coord = { latitude: -6.2, longitude: 106.8 }
+			expect(getDistance(coord, coord)).toBe(0)
+		})
+
+		it('should throw an error for invalid latitudes', () => {
+			const start = { latitude: -91, longitude: 0 }
+			const end = { latitude: 0, longitude: 0 }
+			expect(() => getDistance(start, end)).toThrow(RangeError)
+		})
+
+		it('should throw an error for invalid longitudes', () => {
+			const start = { latitude: 0, longitude: -181 }
+			const end = { latitude: 0, longitude: 0 }
+			expect(() => getDistance(start, end)).toThrow(RangeError)
+		})
+
+		it('should throw an error when Vincenty formula does not converge (near-antipodal points)', () => {
+			const start = { latitude: 0, longitude: 0 }
+			const end = { latitude: 0.5, longitude: 179.5 }
+			expect(() => getDistance(start, end)).toThrow('Vincenty formula gagal konvergen')
+		})
+
+		it('should return 0 when evaluating the exact same poles with different longitudes (tests sinAngular === 0 branch)', () => {
+			const start = { latitude: 90, longitude: 0 }
+			const end = { latitude: 90, longitude: 120 }
+			expect(getDistance(start, end)).toBeCloseTo(0)
+		})
+
+		it('should return correct conversions for other units', () => {
+			const start = { latitude: -6.2, longitude: 106.8 }
+			const end = { latitude: -6.3, longitude: 106.9 }
+			const m = getDistance(start, end, 'm')
+			const km = getDistance(start, end, 'km')
+			const mi = getDistance(start, end, 'mi')
+			const nm = getDistance(start, end, 'nm')
+
+			expect(km).toBeCloseTo(m / 1000)
+			expect(mi).toBeCloseTo(m / 1609.344)
+			expect(nm).toBeCloseTo(m / 1852)
 		})
 	})
 })

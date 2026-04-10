@@ -79,12 +79,12 @@ console.log(decoded.hiddenText) // "Secret password"
 
 ### 3. Map / Geo Utilities
 
-Utilitas geografis untuk perhitungan arah dan encoding polyline.
+Utilitas geografis untuk perhitungan arah, jarak geografis presisi (Vincenty), dan encoding polyline.
 
 **Import:**
 
 ```ts
-import { calculateHeading, encodePolyline, decodePolyline, interpolateHeading } from 'atlibx/map'
+import { calculateHeading, encodePolyline, decodePolyline, interpolateHeading, getDistance } from 'atlibx/map'
 ```
 
 **Usage:**
@@ -101,6 +101,13 @@ const encoded = encodePolyline([
 	[latitude1, longitude1],
 	[latitude2, longitude2],
 ])
+
+// 3. Get Distance (Vincenty Formula)
+const distance = getDistance(
+	{ latitude: -6.2, longitude: 106.81 },
+	{ latitude: -6.19, longitude: 106.82 },
+	'm', // Unit: 'm', 'km', 'mi', 'nm' (default: 'm')
+)
 ```
 
 ---
