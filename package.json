@@ -1,7 +1,7 @@
 {
   "name": "atlibx",
   "type": "module",
-  "version": "1.11.0",
+  "version": "1.12.0",
   "description": "ATLIBX is a collection of internal utilities with no external dependencies (zero-dependency) designed for performance and cross-service use",
   "author": "adhemukhlis",
   "license": "ISC",
