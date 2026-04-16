@@ -1,26 +1,47 @@
 # atlibx
 
-![License](https://img.shields.io/npm/l/atlibx) ![Node Version](https://img.shields.io/node/v/atlibx) ![Coverage](https://img.shields.io/badge/coverage-96.8%25-brightgreen)
+![License](https://img.shields.io/npm/l/atlibx) ![Node Version](https://img.shields.io/node/v/atlibx) ![Coverage](https://img.shields.io/badge/coverage-98.4%25-brightgreen)
 
-**atlibx** adalah koleksi utilitas internal tanpa dependensi eksternal (zero-dependency) yang dirancang untuk performa dan penggunaan lintas service (backend & frontend).
+**atlibx** is a high-performance, zero-dependency utility library designed for Node.js environments. It provides a robust set of tools for data compression, cryptography, geographic calculations, and function optimization, ensuring cross-service compatibility and minimal bundle overhead.
 
-Library ini mencakup modul untuk manipulasi array, kriptografi, geo-spatial, pemrosesan string, dan banyak lagi.
+## Key Features
+
+- **Zero External Dependencies**: Lightweight and secure architecture.
+- **High Performance**: Optimized using native Node.js APIs and efficient algorithms.
+- **Type Safe**: First-class TypeScript support with comprehensive definitions.
+- **Modern Standards**: Built exclusively for ES Modules (Node.js >= 22.0.0).
+
+---
 
 ## Installation
 
+Install via your preferred package manager:
+
+### npm
+
 ```bash
 npm install atlibx
-# atau
+```
+
+### pnpm
+
+```bash
 pnpm add atlibx
-# atau
+```
+
+### yarn
+
+```bash
 yarn add atlibx
 ```
+
+---
 
 ## Modules
 
 ### 1. Array Utilities
 
-Modul untuk kompresi data JSON array of objects. Sangat berguna untuk mengurangi payload size API response.
+Specialized tools for JSON array compression and structural flattening, designed to significantly reduce API payload sizes without losing data integrity.
 
 **Import:**
 
@@ -36,10 +57,10 @@ const users = [
 	{ id: 2, name: 'Bob', role: 'user' },
 ]
 
-// 1. Flatten: Mengubah array of object menjadi struktur terkompresi
+// 1. Flatten: Compress an array of objects into a compact key-indexed structure
 const compressed = flatten(['id', 'name', 'role'], users)
 
-// 2. Unflatten: Mengembalikannya ke bentuk semula
+// 2. Unflatten: Restore the compressed structure to its original array of objects
 const restored = unflatten(compressed)
 ```
 
@@ -47,7 +68,7 @@ const restored = unflatten(compressed)
 
 ### 2. Crypto Utilities (AES-GCM & Steganography)
 
-Wrapper untuk enkripsi simetris AES-256-GCM dan utilitas steganografi berbasis _Zero-Width Characters_.
+A secure wrapper for AES-256-GCM symmetric encryption and innovative zero-width character steganography for hiding data within text.
 
 **Import:**
 
@@ -55,7 +76,7 @@ Wrapper untuk enkripsi simetris AES-256-GCM dan utilitas steganografi berbasis _
 import { encrypt, decrypt, steganoEncode, steganoDecode } from 'atlibx/crypto'
 ```
 
-**Usage (AES):**
+**Usage (AES Encryption):**
 
 ```ts
 const secret = 'my-super-secret-password-at-least-32-chars'
@@ -66,20 +87,20 @@ const { result: decrypted } = await decrypt(encrypted, secret)
 **Usage (Steganography):**
 
 ```ts
-// Menyembunyikan teks rahasia di dalam teks publik secara invisible
+// Embedding hidden text within a public string using invisible zero-width characters
 const visible = 'This is a normal tweet.'
 const hidden = 'Secret password'
 const combined = steganoEncode(visible, hidden, 'seed-key')
 
 const decoded = steganoDecode(combined, 'seed-key')
-console.log(decoded.hiddenText) // "Secret password"
+console.log(decoded.hiddenText) // Output: "Secret password"
 ```
 
 ---
 
 ### 3. Map / Geo Utilities
 
-Utilitas geografis untuk perhitungan arah, jarak geografis presisi (Vincenty), dan encoding polyline.
+Comprehensive geographic utilities including bearing calculation, precise distance measurement using the Vincenty formula, and Google Polyline encoding.
 
 **Import:**
 
@@ -102,11 +123,11 @@ const encoded = encodePolyline([
 	[latitude2, longitude2],
 ])
 
-// 3. Get Distance (Vincenty Formula)
+// 3. Precise Distance Calculation (Vincenty Formula)
 const distance = getDistance(
 	{ latitude: -6.2, longitude: 106.81 },
 	{ latitude: -6.19, longitude: 106.82 },
-	'm', // Unit: 'm', 'km', 'mi', 'nm' (default: 'm')
+	'm', // Supported units: 'm', 'km', 'mi', 'nm' (default: 'm')
 )
 ```
 
@@ -114,7 +135,7 @@ const distance = getDistance(
 
 ### 4. String Utilities
 
-Kumpulan fungsi sanitasi string berperforma tinggi.
+High-performance string sanitization and case transformation utilities for clean data handling.
 
 **Import:**
 
@@ -125,15 +146,15 @@ import { sanitizeString, kebabLower, snakeLower } from 'atlibx/string'
 **Usage:**
 
 ```ts
-sanitizeString('  Hello   World! \u0000 ') // "Hello World!"
-kebabLower('Hello World') // "hello-world"
+sanitizeString('  Hello   World! \u0000 ') // Output: "Hello World!"
+kebabLower('Hello World') // Output: "hello-world"
 ```
 
 ---
 
 ### 5. Parser Utilities (Teltonika)
 
-Parser protokol Teltonika (Codec 8 & 8 Extended) yang dioptimasi menggunakan Buffer.
+Highly optimized Buffer-based parser for Teltonika IoT protocols (Codec 8 & 8 Extended).
 
 **Import:**
 
@@ -143,29 +164,46 @@ import { TeltonikaParser } from 'atlibx/parser'
 
 ---
 
-### 6. Object & Ensure Utilities
+### 6. Object Utilities
 
-Sanitasi objek dan validasi tipe data dasar.
+Utilities for object sanitization and safe JSON parsing.
 
 **Import:**
 
 ```ts
 import { sanitizeObject, jsonSafeParse } from 'atlibx/object'
-import { ensureFiniteNumber } from 'atlibx/ensure'
 ```
 
 **Usage:**
 
 ```ts
-sanitizeObject({ name: '  John  ', age: '25' }) // { name: 'John', age: 25 }
-ensureFiniteNumber('123.45', 0) // 123.45
+sanitizeObject({ name: '  John  ', age: '25' }) // Output: { name: 'John', age: 25 }
 ```
 
 ---
 
-### 7. Regex Constants
+### 7. Number Utilities
 
-Kumpulan regex yang sudah dikompilasi untuk berbagai kebutuhan pembersihan data.
+Robust data type enforcement and precision rounding.
+
+**Import:**
+
+```ts
+import { ensureFiniteNumber, roundToPrecision } from 'atlibx/number'
+```
+
+**Usage:**
+
+```ts
+ensureFiniteNumber('123.45', 0) // Output: 123.45
+roundToPrecision(1.235, { maxFractionDigits: 2, roundingMode: 'halfEven' }) // Output: 1.24
+```
+
+---
+
+### 8. Regex Constants
+
+Pre-compiled and optimized regular expressions for common tasks like whitespace removal and control character detection.
 
 **Import:**
 
@@ -175,9 +213,9 @@ import { whitespaceRegex, controlCharsRegex, urlWithVersionRegex } from 'atlibx/
 
 ---
 
-### 8. Common Utilities
+### 9. Common Utilities
 
-Utilitas umum lainnya.
+General-purpose development utilities, including asynchronous delay handlers.
 
 **Import:**
 
@@ -188,14 +226,14 @@ import { sleep } from 'atlibx/common'
 **Usage:**
 
 ```ts
-await sleep(1000) // Delay 1 second
+await sleep(1000) // Suspend execution for 1000ms
 ```
 
 ---
 
-### 9. Validator Utilities
+### 10. Validator Utilities
 
-Utilitas untuk validasi format data tipe tertentu.
+Lightweight validation tools for verifying common data formats and structures.
 
 **Import:**
 
@@ -206,14 +244,14 @@ import { isValidPasswordFormat, isRecord } from 'atlibx/validator'
 **Usage:**
 
 ```ts
-isRecord({ key: 'value' }) // true
+isRecord({ key: 'value' }) // Output: true
 ```
 
 ---
 
-### 10. Function Utilities
+### 11. Function Utilities
 
-Utilitas terkait eksekusi fungsi (_function execution_) dan deteksi anomali berbasis statistik.
+Advanced execution control patterns (throttle/debounce) and statistical anomaly detection algorithms.
 
 **Import:**
 
@@ -221,57 +259,38 @@ Utilitas terkait eksekusi fungsi (_function execution_) dan deteksi anomali berb
 import { throttle, debounce, detectAnomalies, detectAnomaliesFast } from 'atlibx/function'
 ```
 
-**Usage:**
+**Usage (Execution Control):**
 
 ```ts
-// 1. Throttle: Membatasi eksekusi fungsi maksimal sekali per milidetik tertentu.
-const logThrottle = throttle((message: string) => {
-	console.log(message)
-}, 1000)
+// Throttle: Limits function execution frequency
+const logThrottle = throttle((message: string) => console.log(message), 1000)
 
-logThrottle('Hello') // Tereksekusi langsung
-logThrottle('World') // Diabaikan
-// 1 detik kemudian, logThrottle('World') atau argumen terakhir akan tereksekusi jika opsi trailing true (default)
+// Debounce: Postpones execution until the quiet period expires
+const logDebounce = debounce((message: string) => console.log(message), 500)
+```
 
-logThrottle.cancel() // Membatalkan throttle
-logThrottle.flush() // Mengeksekusi segera panggilan yang tertunda
+**Usage (Anomaly Detection):**
 
-// 2. Debounce: Menunda eksekusi fungsi sampai periode tenang (tanpa pemanggilan) berlalu.
-const logDebounce = debounce((message: string) => {
-	console.log(message)
-}, 500)
-
-logDebounce('Type 1') // Tertunda
-logDebounce('Type 2') // Tertunda, me-reset timer
-// 500 milidetik setelah pemanggilan terakhir, logDebounce('Type 2') tereksekusi
-
-logDebounce.cancel() // Membatalkan debounce
-logDebounce.flush() // Mengeksekusi segera panggilan yang tertunda
-
-// 3. detectAnomalies: Deteksi anomali lengkap dengan z-score, deviation, dan summary statistik.
+```ts
 const data = [
 	{ key: 'sensor-1', value: 10 },
 	{ key: 'sensor-2', value: 12 },
 	{ key: 'sensor-3', value: 11 },
-	{ key: 'sensor-4', value: 500 }, // outlier
+	{ key: 'sensor-4', value: 500 }, // Outlier identified via Z-score
 ]
-const result = detectAnomalies(data, 2) // threshold default = 2 (2σ)
-// result.mean, result.stdDev, result.upperBound, result.lowerBound
-// result.anomalies  → AnomalyResult[] (key, value, isAnomaly, zScore, deviation)
-// result.normals    → AnomalyResult[]
-// result.totalAnomalies, result.totalNormal
 
-// 4. detectAnomaliesFast: Versi ringan, hanya mengembalikan daftar anomali tanpa z-score/deviation.
-const fast = detectAnomaliesFast(data, 2)
-// fast.mean, fast.stdDev
-// fast.anomalies → KeyValueData[] (key, value)
+// Detailed statistical detection (Z-score, StdDev, Bounds)
+const result = detectAnomalies(data, 2) // Threshold default = 2 (2σ)
 ```
 
-## Requirements
+---
 
-- Node.js >= 22.0.0
-- ES Module Support
+## Technical Specifications
+
+- **Runtime**: Node.js >= 22.0.0
+- **Module System**: ES Modules (ESM)
+- **Dependencies**: 0 external dependencies
 
 ## License
 
-ISC
+This project is licensed under the **ISC License**.

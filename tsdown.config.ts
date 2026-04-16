@@ -8,7 +8,7 @@ export default defineConfig({
 		string: 'src/modules/string/index.ts',
 		array: 'src/modules/array/index.ts',
 		common: 'src/modules/common/index.ts',
-		ensure: 'src/modules/ensure/index.ts',
+		number: 'src/modules/number/index.ts',
 		object: 'src/modules/object/index.ts',
 		parser: 'src/modules/parser/index.ts',
 		regex: 'src/modules/regex/index.ts',

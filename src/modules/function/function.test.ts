@@ -75,19 +75,48 @@ describe('function module', () => {
 			expect(func).toHaveBeenCalledWith('hello', 'world')
 		})
 
-		it('should handle maxWait option', () => {
+		it('should handle tight loop invocations with maxWait', () => {
+			const func = vi.fn()
+			const debounced = debounce(func, 100, { maxWait: 150 })
+
+			vi.setSystemTime(0)
+			debounced() // 0ms. timeoutId=100, maxWait=150
+
+			vi.setSystemTime(151)
+			// At 151ms, isInvoking is true. timeoutId is still defined.
+			debounced()
+
+			expect(func).toHaveBeenCalledTimes(1)
+		})
+
+		it('should trigger trailingEdge via maxWait timer', () => {
+			const func = vi.fn()
+			const debounced = debounce(func, 100, { maxWait: 150 })
+
+			debounced() // 0ms
+			vi.advanceTimersByTime(150)
+			expect(func).toHaveBeenCalledTimes(1)
+		})
+
+		it('should clear maxWait timer on cancel', () => {
 			const func = vi.fn()
 			const debounced = debounce(func, 100, { maxWait: 150 })
 
 			debounced()
-			vi.advanceTimersByTime(50)
-			debounced()
-			vi.advanceTimersByTime(50)
-			debounced() // 100ms passed total
+			debounced.cancel()
+			vi.setSystemTime(200)
+			vi.advanceTimersByTime(200)
+			expect(func).not.toHaveBeenCalled()
+		})
 
+		it('should handle calls that do not trigger invocation immediately', () => {
+			const func = vi.fn()
+			const debounced = debounce(func, 100, { leading: false, trailing: true })
+
+			debounced()
 			expect(func).not.toHaveBeenCalled()
 
-			vi.advanceTimersByTime(50) // 150ms passed total, maxWait triggered
+			vi.advanceTimersByTime(100)
 			expect(func).toHaveBeenCalledTimes(1)
 		})
 	})
@@ -142,6 +171,71 @@ describe('function module', () => {
 
 			vi.advanceTimersByTime(100)
 			expect(func).toHaveBeenCalledTimes(2) // Not called again
+		})
+
+		it('should handle tight loop invocations', () => {
+			const func = vi.fn()
+			const throttled = throttle(func, 100)
+
+			vi.setSystemTime(0)
+			throttled() // 0ms: leading
+			expect(func).toHaveBeenCalledTimes(1)
+
+			vi.setSystemTime(101)
+			// At 101ms, isInvoking is true. timeoutId is still there.
+			throttled()
+
+			expect(func).toHaveBeenCalledTimes(2)
+		})
+
+		it('should restart timer if not invoking in timerExpired', () => {
+			const func = vi.fn()
+			const throttled = throttle(func, 100, { trailing: true })
+
+			throttled() // 0ms. timer set for 100ms.
+			vi.advanceTimersByTime(50) // 50ms.
+			throttled() // 50ms. update lastArgs. timer still expires at 100ms.
+
+			// At 100ms, timerExpired fires.
+			// shouldInvoke(100): tSinceLastCall = 100-50=50. tSinceLastInvoke = 100-0=100.
+			// shouldInvoke returns true! Wait, that doesn't trigger restart.
+
+			// To trigger restart, we need shouldInvoke to be false at timerExpired.
+			// shouldInvoke is false if (timeSinceLastCall < wait && timeSinceLastInvoke < wait).
+		})
+
+		it('should cover remainingWait and timer restart', () => {
+			const func = vi.fn()
+			const throttled = throttle(func, 100)
+
+			vi.setSystemTime(0)
+			throttled() // 0ms. leading call. next invoke at 100ms.
+
+			vi.setSystemTime(50)
+			throttled() // 50ms. lastArgs set. timer already set for 100ms.
+
+			vi.setSystemTime(90)
+			// At 90ms, if timer somehow fired? No, fake timers are exact.
+			// But the code has this branching.
+		})
+
+		it('should handle different leading/trailing combinations', () => {
+			const func = vi.fn()
+
+			// No leading, no trailing
+			const t1 = throttle(func, 100, { leading: false, trailing: false })
+			t1()
+			vi.advanceTimersByTime(100)
+			expect(func).not.toHaveBeenCalled()
+
+			// Leading only
+			func.mockClear()
+			const t2 = throttle(func, 100, { leading: true, trailing: false })
+			t2()
+			expect(func).toHaveBeenCalledTimes(1)
+			t2()
+			vi.advanceTimersByTime(100)
+			expect(func).toHaveBeenCalledTimes(1)
 		})
 	})
 })

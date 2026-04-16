@@ -9,11 +9,12 @@ export { decodePolyline, encodePolyline, calculateHeading, linearInterpolation, 
 export type { Coordinate, CoordinateObject, DistanceUnit } from './modules/map'
 
 // array
-export { flatten, unflatten } from './modules/array'
+export { flatten, unflatten, ensureArray } from './modules/array'
 export type { Flatten, Unflatten, FlattenData, FlattenResult, FlattenResultStrict } from './modules/array'
 
-// ensure
-export { ensureFiniteNumber } from './modules/ensure'
+// number
+export { ensureFiniteNumber, roundToPrecision } from './modules/number'
+export type { RoundToPrecisionOptions, RoundingMode } from './modules/number'
 
 // object
 export { sanitizeObject, jsonSafeParse } from './modules/object'

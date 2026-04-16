@@ -2,7 +2,7 @@
   "name": "atlibx",
   "type": "module",
   "version": "1.11.0",
-  "description": "",
+  "description": "ATLIBX is a collection of internal utilities with no external dependencies (zero-dependency) designed for performance and cross-service use",
   "author": "adhemukhlis",
   "license": "ISC",
   "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319",
@@ -30,10 +30,10 @@
     "@types/node": "^25.6.0",
     "@vitest/coverage-v8": "^4.1.4",
     "eslint": "^10.2.0",
-    "globals": "^17.4.0",
-    "tsdown": "^0.21.7",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.58.1",
+    "globals": "^17.5.0",
+    "tsdown": "^0.21.8",
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.58.2",
     "vitest": "^4.1.4"
   },
   "repository": {
@@ -71,11 +71,6 @@
       "import": "./dist/crypto.mjs",
       "default": "./dist/crypto.mjs"
     },
-    "./ensure": {
-      "types": "./dist/ensure.d.mts",
-      "import": "./dist/ensure.mjs",
-      "default": "./dist/ensure.mjs"
-    },
     "./function": {
       "types": "./dist/function.d.mts",
       "import": "./dist/function.mjs",
@@ -85,6 +80,11 @@
       "types": "./dist/map.d.mts",
       "import": "./dist/map.mjs",
       "default": "./dist/map.mjs"
+    },
+    "./number": {
+      "types": "./dist/number.d.mts",
+      "import": "./dist/number.mjs",
+      "default": "./dist/number.mjs"
     },
     "./object": {
       "types": "./dist/object.d.mts",

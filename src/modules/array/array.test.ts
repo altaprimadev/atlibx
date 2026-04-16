@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import flatten from './flatten'
 import unflatten from './unflatten'
+import ensureArray from './ensure-array'
 
 describe('Array Module', () => {
 	describe('flatten', () => {
@@ -74,6 +75,24 @@ describe('Array Module', () => {
 			}
 			const result = unflatten(payload as any)
 			expect(result[0]).toEqual({ id: undefined })
+		})
+	})
+
+	describe('ensureArray', () => {
+		it('should return the same array if input is already an array', () => {
+			const arr = [1, 2, 3]
+			expect(ensureArray(arr)).toBe(arr)
+		})
+
+		it('should wrap a single value in an array', () => {
+			expect(ensureArray(1)).toEqual([1])
+			expect(ensureArray('test')).toEqual(['test'])
+			expect(ensureArray({ a: 1 })).toEqual([{ a: 1 }])
+		})
+
+		it('should return an empty array for undefined or null', () => {
+			expect(ensureArray(undefined)).toEqual([])
+			expect(ensureArray(null)).toEqual([])
 		})
 	})
 })
