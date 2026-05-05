@@ -1,7 +1,7 @@
 import type { Flatten, FlattenResultStrict } from './types'
 
-const flatten: Flatten = (header, data) => {
-	const out: FlattenResultStrict<(typeof header)[number]> = { h: header }
+const flatten: Flatten = (header: readonly PropertyKey[], data: readonly Record<PropertyKey, unknown>[]) => {
+	const out: FlattenResultStrict<PropertyKey> = { h: header } as unknown as FlattenResultStrict<PropertyKey>
 
 	for (let i = 0; i < data.length; i++) {
 		const d = data[i]

@@ -59,14 +59,17 @@ const users: User[] = [
 	{ id: 2, name: 'Bob', role: 'user' },
 ]
 
-// 1. Flatten: Compress an array of objects into a compact key-indexed structure
-const compressed = flatten(['id', 'name', 'role'], users)
+// 1. Flatten (Inferred): Automatically infer keys and structure
+const compressed = flatten(['id', 'name'], users)
 
-// 2. Unflatten: Restore the compressed structure to its original array of objects
+// 2. Flatten (Explicit): Enforce header keys and data structure strictly
+const strictCompressed = flatten<User>(['id', 'name', 'role'], users)
+
+// 3. Unflatten (Inferred): Restore to array of objects with inferred keys
 const restored = unflatten(compressed)
 
-// 3. Typesafe Unflatten: Enforce return type during restoration
-const typesafeRestored = unflatten<User>(compressed)
+// 4. Unflatten (Explicit): Enforce return type during restoration
+const strictRestored = unflatten<User>(compressed)
 ```
 
 ---
