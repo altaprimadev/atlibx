@@ -1,6 +1,6 @@
 # atlibx
 
-![License](https://img.shields.io/npm/l/atlibx) ![Node Version](https://img.shields.io/node/v/atlibx) ![Coverage](https://img.shields.io/badge/coverage-98.4%25-brightgreen)
+![License](https://img.shields.io/npm/l/atlibx) ![Node Version](https://img.shields.io/node/v/atlibx) ![Coverage](https://img.shields.io/badge/coverage-98.38%25-brightgreen)
 
 **atlibx** is a high-performance, zero-dependency utility library designed for Node.js environments. It provides a robust set of tools for data compression, cryptography, geographic calculations, and function optimization, ensuring cross-service compatibility and minimal bundle overhead.
 
@@ -52,7 +52,9 @@ import { flatten, unflatten } from 'atlibx/array'
 **Usage:**
 
 ```ts
-const users = [
+type User = { id: number; name: string; role: string }
+
+const users: User[] = [
 	{ id: 1, name: 'Alice', role: 'admin' },
 	{ id: 2, name: 'Bob', role: 'user' },
 ]
@@ -62,6 +64,9 @@ const compressed = flatten(['id', 'name', 'role'], users)
 
 // 2. Unflatten: Restore the compressed structure to its original array of objects
 const restored = unflatten(compressed)
+
+// 3. Typesafe Unflatten: Enforce return type during restoration
+const typesafeRestored = unflatten<User>(compressed)
 ```
 
 ---
